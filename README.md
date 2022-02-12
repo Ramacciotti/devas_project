@@ -22,7 +22,7 @@ Acesse https://github.com/users/Ramacciotti/projects/1/views/1 para visualizar a
 2) Abra o arquivo application.properties do 'main';
 3) Insira a senha do seu banco Mysql e o username do seu banco Mysql;
 
-![image](https://user-images.githubusercontent.com/32496953/153713887-0ac725b7-6e7e-4d9d-89fe-e98577683efa.png)
+![image](https://user-images.githubusercontent.com/32496953/153716674-2d55e843-0f01-41ec-b967-f5eb3bfa71d1.png)
 
 4) Clique em 'Run'.
 
