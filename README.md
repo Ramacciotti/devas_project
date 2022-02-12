@@ -4,7 +4,11 @@ A falta de mulheres no mercado de trabalho de tecnologia é uma dor latejante, o
 
 ## Visão Geral do Projeto
 
-Acesse https://github.com/users/Ramacciotti/projects/1/views/1 para ver todos os repositórios e tarefas relacionadas à este projeto.
+Acesse https://github.com/stars/Ramacciotti/lists/devas-mulheres-em-ti para ver todos os repositórios e tarefas relacionadas à este projeto.
+
+## Acompanhe o Desenvolvimento
+
+Acesse https://github.com/users/Ramacciotti/projects/1/views/1 para visualizar a lista de tarefas deste projeto.
 
 ## Requisitos para rodar este projeto
 
