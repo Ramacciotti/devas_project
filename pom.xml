@@ -15,7 +15,7 @@
 	<name>devas</name>
 	<description>Projeto de Conclusão de Curso, SENAI</description>
 
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 
 	<properties>
 		<java.version>17</java.version>
@@ -33,7 +33,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -44,6 +43,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>
 
