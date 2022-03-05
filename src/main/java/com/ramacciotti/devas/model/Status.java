@@ -22,6 +22,10 @@ public class Status {
 
     private boolean active;
 
+    private boolean logged;
+
+    private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
 
 }

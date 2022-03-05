@@ -24,9 +24,7 @@ public class Technology {
 
     @ManyToOne
     @JsonIgnore
-    private Account Account;
-
-    private LocalDateTime updatedAt;
+    private User User;
 
 }
 

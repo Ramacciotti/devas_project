@@ -27,6 +27,4 @@ public class Social {
 
     private String site;
 
-    private LocalDateTime updatedAt;
-
 }

@@ -5,7 +5,6 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -13,8 +12,8 @@ import java.time.LocalDateTime;
 @With
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name= "profile")
-public class Profile {
+@Table(name = "about")
+public class About {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +31,5 @@ public class Profile {
 
     @NotNull @Column(length = 3000)
     private String description;
-
-    private LocalDateTime updatedAt;
 
 }
