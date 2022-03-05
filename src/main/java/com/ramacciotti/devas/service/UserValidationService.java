@@ -11,39 +11,22 @@ import java.util.Optional;
 @Service
 public class UserValidationService implements UserValidationInterface {
 
+    public final UserFilterService service;
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
 
-    public UserValidationService(UserRepository userRepository, PasswordEncoder encoder) {
+    public UserValidationService(UserFilterService service, UserRepository userRepository, PasswordEncoder encoder) {
+        this.service = service;
         this.userRepository = userRepository;
         this.encoder = encoder;
     }
 
     @Override
-    public Optional<User> checkIfUserExists(Long id){
+    public boolean validateLogin(String email, String password) {
 
-        var user = userRepository.findById(id);
+        Optional<User> user = service.findUserByEmail(email);
 
-        if(user.isEmpty()){
-            throw new IllegalArgumentException("user_not_found");
-        } else {
-            return user;
-        }
-
-    }
-
-    @Override
-    public boolean checkIfEmailAndPasswordMatch(String email, String password) {
-
-        Optional<User> userExists = userRepository.findByEmail(email);
-
-        if(userExists.isEmpty()){
-            throw new IllegalArgumentException("user_not_found");
-        }
-
-        User user = userExists.get();
-
-        boolean valid = encoder.matches(password, user.getPassword());
+        boolean valid = encoder.matches(password, user.get().getPassword());
 
         HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
 

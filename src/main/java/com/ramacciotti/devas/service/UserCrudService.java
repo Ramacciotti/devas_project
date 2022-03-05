@@ -16,11 +16,13 @@ import java.util.Optional;
 public class UserCrudService implements UserCrudInterface {
 
     private final UserRepository repository;
+    private final UserFilterService filter;
     private final UserValidationService validation;
     private final PasswordEncoder encoder;
 
-    public UserCrudService(UserRepository repository, UserValidationService validation, PasswordEncoder encoder) {
+    public UserCrudService(UserRepository repository, UserFilterService filter, UserValidationService validation, PasswordEncoder encoder) {
         this.repository = repository;
+        this.filter = filter;
         this.validation = validation;
         this.encoder = encoder;
     }
@@ -54,9 +56,13 @@ public class UserCrudService implements UserCrudInterface {
     }
 
     @Override
-    public UserVO updateUser(Long id, UserVO userVO) {
+    public UserVO updateUser(UserVO userVO) {
 
-        Optional<User> user = validation.checkIfUserExists(id);
+        Optional<User> user = filter.findUserByEmail(userVO.getEmail());
+
+        if(!user.get().getStatus().isLogged()){
+            throw new IllegalArgumentException("you_must_be_logged_to_update_user");
+        }
 
         if (userVO.getEmail() != null) {
             user.get().setEmail(userVO.getEmail());
@@ -83,9 +89,16 @@ public class UserCrudService implements UserCrudInterface {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        Optional<User> account = validation.checkIfUserExists(id);
-        repository.delete(account.get());
+    public void deleteUser(UserVO userVO) {
+
+        Optional<User> user = filter.findUserByEmail(userVO.getEmail());
+
+        if(!user.get().getStatus().isLogged()) {
+            throw new IllegalArgumentException("you_must_be_logged_to_delete_user");
+        }
+
+        repository.delete(user.get());
+
     }
 
 

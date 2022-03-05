@@ -10,29 +10,45 @@ import java.util.Optional;
 @Service
 public class UserLoginService implements UserLoginInterface {
 
+    public final UserFilterService service;
     public final UserValidationService validationService;
     public final UserRepository userRepository;
 
-    public UserLoginService(UserValidationService validationService, UserRepository userRepository) {
+    public UserLoginService(UserFilterService service, UserValidationService validationService, UserRepository userRepository) {
+        this.service = service;
         this.validationService = validationService;
         this.userRepository = userRepository;
     }
 
     @Override
-    public UserVO loginUser(String email, String password) {
+    public UserVO loginUser(UserVO userVO) {
 
-        Optional<User> accountExists = userRepository.findByEmail(email);
+        var user = service.findUserByEmail(userVO.getEmail());
 
-        User user = accountExists.get();
-
-        if(validationService.checkIfEmailAndPasswordMatch(email, password)){
-            user.getStatus().setLogged(true);
+        if(validationService.validateLogin(userVO.getEmail(), userVO.getPassword())){
+            user.get().getStatus().setLogged(true);
         } else {
-            user.getStatus().setLogged(false);
+            user.get().getStatus().setLogged(false);
         }
-        userRepository.save(user);
 
-        return new UserVO(user);
+        userRepository.save(user.get());
+
+        return new UserVO(user.get());
+
+    }
+
+    @Override
+    public UserVO logoutUser(UserVO userVO) {
+
+        var user = service.findUserByEmail(userVO.getEmail());
+
+        if(!user.isEmpty()){
+            user.get().getStatus().setLogged(false);
+        }
+
+        userRepository.save(user.get());
+
+        return new UserVO(user.get());
 
     }
 

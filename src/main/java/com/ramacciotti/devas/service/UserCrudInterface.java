@@ -14,9 +14,9 @@ public interface UserCrudInterface {
     List<UserVO> readUsers();
 
     @Transactional
-    UserVO updateUser(Long id, UserVO userVO);
+    UserVO updateUser(UserVO userVO);
 
     @Transactional
-   void deleteUser(Long id);
+    void deleteUser(UserVO userVO);
 
 }

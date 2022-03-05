@@ -1,5 +1,6 @@
 package com.ramacciotti.devas.controller;
 
+import com.ramacciotti.devas.model.User;
 import com.ramacciotti.devas.service.UserCrudService;
 import com.ramacciotti.devas.service.UserFilterService;
 import com.ramacciotti.devas.service.UserLoginService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,56 +36,42 @@ public class UserController {
         return crudService.readUsers();
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
-    public UserVO updateUser(@PathVariable Long id, @RequestBody UserVO userVO){
-        return crudService.updateUser(id, userVO);
+    public UserVO updateUser(@RequestBody UserVO userVO){
+        return crudService.updateUser(userVO);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable Long id){
-        crudService.deleteUser(id);
+    public void deleteUser(@RequestBody UserVO userVO){
+        crudService.deleteUser(userVO);
     }
 
 
 
-    @GetMapping("/login")
-    public UserVO loginUser(@RequestParam String email, @RequestParam String password){
-        return loginService.loginUser(email, password);
+    @PostMapping("/login")
+    public UserVO loginUser(@RequestBody UserVO userVO){
+        return loginService.loginUser(userVO);
     }
 
-    @GetMapping("/filter/{id}")
+    @GetMapping("/logout")
+    public UserVO logoutUser(@RequestBody UserVO userVO){
+        return loginService.logoutUser(userVO);
+    }
+
+
+
+    @GetMapping("/filter/id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserVO filterUserById(@PathVariable Long id){
+    public Optional<User> filterUserById(@PathVariable Long id){
         return filterService.findUserById(id);
     }
 
-
-/*
-    @GetMapping("/login")
-    public UserVO loginUser(@RequestParam String email, @RequestParam String password){
-        return accountService.loginUser(email, password);
-    }
-
-    @GetMapping("/all")
+    @GetMapping("/filter/email/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserVO> getUsers(){
-        return accountService.findUsers();
+    public Object filterUserByEmail(@PathVariable String email){
+        return filterService.findUserByEmail(email);
     }
-
-    @GetMapping("/{email}")
-    @ResponseStatus(HttpStatus.OK)
-    public UserVO getUserByEmail(@PathVariable String email){
-        return accountService.findUserByEmail(email);
-    }
-
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public UserVO updateUserById(@PathVariable Long id, @RequestBody UserVO accountVO){
-        return accountService.updateUser(id, accountVO);
-    }
-
- */
 
 }
