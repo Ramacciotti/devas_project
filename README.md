@@ -8,6 +8,6 @@ Para realizar o download de cada projeto abaixo, leia os passos de seus respecti
 
 Acesse https://github.com/Ramacciotti/devas_project/tree/backend
 
-## Acompanhe Front-End
+## Projeto Front-End
 
 Acesse https://github.com/Ramacciotti/devas_project/tree/frontend
