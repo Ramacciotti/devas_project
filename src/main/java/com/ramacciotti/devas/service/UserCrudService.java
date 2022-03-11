@@ -173,9 +173,6 @@ public class UserCrudService implements UserCrudInterface {
             if (userVO.getJob().getExpectation() != null) {
                 user.get().getJob().setExpectation(userVO.getJob().getExpectation());
             }
-            if (userVO.getJob().getCity() != null) {
-                user.get().getJob().setCity(userVO.getJob().getCity());
-            }
             user.get().getStatus().setUpdatedAt(LocalDateTime.now());
         }
 

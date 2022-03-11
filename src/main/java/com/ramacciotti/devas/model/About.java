@@ -32,4 +32,7 @@ public class About {
     @NotNull @Column(length = 3000)
     private String description;
 
+    @NotNull
+    private Long image;
+
 }

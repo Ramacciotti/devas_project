@@ -37,7 +37,6 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_id")
-    @NotNull
     private Job job;
 
     @OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.ALL})

@@ -33,6 +33,4 @@ public class Job {
 
     private BigDecimal expectation;
 
-    private String city;
-
 }
