@@ -12,21 +12,19 @@ Acesse https://github.com/users/Ramacciotti/projects/1/views/1 para visualizar a
 
 ## Requisitos para rodar este projeto
 
-1) Intellij ou Eclipse (ou outra IDE de sua preferência) instalados na máquina;
-2) Java instalado na máquina;
-3) Mysql instalado na máquina;
+1) Visual Studio Code (ou editor de sua preferência) instalado na máquina;
+2) Node.js instalado na máquina;
 
-## Passos para rodar este projeto
+## Passos para rodar o projeto
 
-1) Abra o projeto em sua IDE;
-2) Abra o arquivo application.properties do 'main';
-3) Insira a senha do seu banco Mysql e o username do seu banco Mysql;
+1) Faça um clone deste projeto em uma pasta vazia da sua máquina.
 
-![image](https://user-images.githubusercontent.com/32496953/153716674-2d55e843-0f01-41ec-b967-f5eb3bfa71d1.png)
+2) Abra o terminal e digite `npm install`. Este comando irá instalar/atualizar todas as dependências necessárias para rodar este projeto na sua máquina. No final, a pastinha 'node_modules' deverá aparecer no projeto.
 
-4) Clique em 'Run'.
+3) Abra o terminal e digite `npm start`. Este comando faz com que sua aplicação frontend fique disponível localmente. Para ver o projeto funcionando, acesse este link: http://localhost:3000/
 
 ## Importante
 
 Para ver o projeto rodando 100%, é necessário rodar o projeto JAVA junto com o projeto React.
+
 
