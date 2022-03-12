@@ -6,7 +6,7 @@ import w3 from '../../assets/w3.svg';
 import w4 from '../../assets/w4.svg';
 import axios from 'axios';
 
-export const SignUp: React.FC = () => {
+export const Panel: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -54,19 +54,20 @@ export const SignUp: React.FC = () => {
       })
       .then((response) => {
         console.log('SUCESSO: ', response);
-        alert('Conta criada com sucesso!');
+        alert('Conta atualizada com sucesso!');
       })
       .catch((error) => {
         console.log('ERROR: ', error);
-        alert('Ops! Ocorreu um erro ao criar a sua conta.');
+        alert('Ops! Ocorreu um erro ao atualizar a sua conta.');
       });
   };
 
   return (
     <Container>
       <Content>
-        <h2>Cadastro</h2>
-        <form onSubmit={handleSubmit} method="POST">
+        <h2>Painel</h2>
+        <p>Caso queira alterar algum item, utilize os campos abaixo. Caso queira deletar sua conta, utilize o botão ao final da páigna.</p>
+        <form onSubmit={handleSubmit} method="PUT">
           <Boxes>
             <Section>
               <Title>
@@ -76,8 +77,8 @@ export const SignUp: React.FC = () => {
                 <p>Com qual email e senha você gostaria de logar na plataforma?</p>
               </Description>
               <Fields>
-                <input name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                <input name="password" type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <input name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input name="password" type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
               </Fields>
             </Section>
 
@@ -91,15 +92,14 @@ export const SignUp: React.FC = () => {
                 </p>
               </Description>
               <Fields>
-                <input name="name" type="text" placeholder="Nome Completo" value={name} onChange={(e) => setName(e.target.value)} required />
-                <input name="age" type="text" placeholder="Idade" value={age} onChange={(e) => setAge(e.target.value)} required />
-                <input name="city" type="text" placeholder="Cidade" value={city} onChange={(e) => setCity(e.target.value)} required />
+                <input name="name" type="text" placeholder="Nome Completo" value={name} onChange={(e) => setName(e.target.value)}  />
+                <input name="age" type="text" placeholder="Idade" value={age} onChange={(e) => setAge(e.target.value)}  />
+                <input name="city" type="text" placeholder="Cidade" value={city} onChange={(e) => setCity(e.target.value)}  />
                 <textarea
                   name="description"
                   placeholder="descrição"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  required
                   maxLength={466}
                   minLength={200}
                 />
@@ -137,8 +137,8 @@ export const SignUp: React.FC = () => {
                 <p>Deixe aqui seu github e seu linkedin para que colegas e recrutadores possam te encontrar!</p>
               </Description>
               <Fields>
-                <input name="github" type="text" placeholder="Github" value={github} onChange={(e) => setGithub(e.target.value)} required />
-                <input name="linkedin" type="text" placeholder="Linkedin" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} required />
+                <input name="github" type="text" placeholder="Github" value={github} onChange={(e) => setGithub(e.target.value)}  />
+                <input name="linkedin" type="text" placeholder="Linkedin" value={linkedin} onChange={(e) => setLinkedin(e.target.value)}  />
               </Fields>
             </Section>
 
@@ -156,7 +156,6 @@ export const SignUp: React.FC = () => {
                   placeholder="Qual é a sua profissão? Ex: Analista de sistemas, Desenvolvedor frontend, etc..."
                   value={position}
                   onChange={(e) => setPosition(e.target.value)}
-                  required
                 />
                 <select
                   id="objective"
@@ -216,7 +215,6 @@ export const SignUp: React.FC = () => {
                   placeholder="Qual seria o seu salário ideal?"
                   value={expectation}
                   onChange={(e) => setExpectation(e.target.value)}
-                  required
                 />
               </Fields>
             </Section>
@@ -237,13 +235,12 @@ export const SignUp: React.FC = () => {
                   placeholder="Ex: Html, Css, Javascript, Java, C#, Php, Mysql..."
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  required
                 />
               </Fields>
             </Section>
 
             <Section>
-              <button type="submit">Cadastrar</button>
+              <button type="submit">Atualizar</button>
             </Section>
           </Boxes>
         </form>

@@ -25,6 +25,14 @@ export const Content = styled.div`
     font-size: 30px;
     line-height: 1.5;
   }
+
+  p {
+    color: var(--snow);
+    font-weight: 400;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
 `;
 
 export const Boxes = styled.div`

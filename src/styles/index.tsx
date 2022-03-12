@@ -9,6 +9,7 @@ export default createGlobalStyle`
   --lightPink: #E069B0;  
   --snow: #D0CEEA;
   --lightSnow: #E8E8F9;
+  --mediumSnow: #b1b1c2;
   --darkSnow: #88869c;
   --lightGreen: #33a791;
   --lightBlue: #3E96E6;

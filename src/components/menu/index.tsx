@@ -11,6 +11,9 @@ export const Menu: React.FC = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/painel">Painel</Link>
+          </li>
+          <li>
             <button>
               <Link to="/cadastro">Cadastre-se</Link>
             </button>

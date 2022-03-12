@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Content } from './styles';
-import { Panel } from '../../components/panel';
 
-export const Painel: React.FC = () => {
+export const Ops: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Panel />
+        <h2>Painel</h2>
+        <p>Você precisa estar logado para visualizar esta página.</p>
       </Content>
     </Container>
   );

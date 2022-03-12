@@ -24,7 +24,7 @@ export const PostFeed: React.FC = () => {
         users?.map((user) => {
           return (
             <section key={user.email}>
-              <Post email={user.email} about={user.about} social={user.social} job={user.job} technologies={user.technologies} />
+              <Post email={user.email} about={user.about} social={user.social} job={user.job} technology={user.technology} />
             </section>
           );
         })}

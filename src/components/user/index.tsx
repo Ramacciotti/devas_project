@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { IAccount, AboutProps, SocialProps, JobProps, TechnologiesProps } from '../../interfaces/IAccount';
+import { IAccount } from '../../interfaces/IAccount';
 
 const UserContext = createContext({} as IAccount);
 
@@ -24,6 +24,7 @@ const UserProvider: React.FC = ({ children }) => {
       })
       .then((response) => {
         localStorage.setItem('email', JSON.stringify(email));
+        localStorage.setItem('password', JSON.stringify(password));
         localStorage.setItem('logged', 'true');
         resetStates();
       })
@@ -33,20 +34,59 @@ const UserProvider: React.FC = ({ children }) => {
       });
   };
 
-  const registerUser = (email: string, password: string, about: AboutProps, social: SocialProps, job: JobProps, technologies: TechnologiesProps) => {
-    console.log(job.level);
+  const registerUser = (
+    email: string,
+    password: string,
+    about: {
+      name: string;
+      age: number;
+      city: string;
+      description: string;
+      image: number;
+    },
+    social: {
+      github: string;
+      linkedin: string;
+    },
+    job: {
+      position: string;
+      level: string;
+      preference: string;
+      objective: string;
+      expectation: string;
+    },
+    technology: {
+      name: string;
+    }
+  ) => {
     axios
       .post('http://localhost:8080/user/create', {
         email: email,
         password: password,
-        about: about,
-        social: social,
-        job: job,
-        technologies: technologies,
+        about: {
+          name: about.name,
+          age: about.age,
+          city: about.city,
+          description: about.description,
+          image: about.image,
+        },
+        social: {
+          github: social.github,
+          linkedin: social.linkedin,
+        },
+        job: {
+          position: job.position,
+          level: job.level,
+          preference: job.preference,
+          objective: job.objective,
+          expectation: job.expectation,
+        },
+        technology: {
+          name: technology.name,
+        },
       })
       .then((response) => {
         console.log('SUCESSO: ', response);
-        resetStates();
       })
       .catch((error) => {
         console.log('ERROR: ', error);

@@ -31,7 +31,7 @@ import { IUser } from '../../interfaces/IAccount';
 import { useEffect } from 'react';
 
 export const Post: React.FC<IUser> = (props: IUser) => {
-  const { email, about, social, job, technologies } = props;
+  const { email, about, social, job, technology } = props;
   const [woman, setWoman] = useState('');
 
   const [objective, setObjective] = useState('');
@@ -73,7 +73,7 @@ export const Post: React.FC<IUser> = (props: IUser) => {
       setPreference('Empresa');
     }
     if (job.preference === 'online') {
-      setPreference('Online');
+      setPreference('Remoto');
     }
     if (job.preference === 'hybrid') {
       setPreference('Híbrido');
@@ -125,12 +125,12 @@ export const Post: React.FC<IUser> = (props: IUser) => {
                   <span>Idade:</span>
                   <h3>{about.age}</h3>
                 </Age>
-                |
+                /
                 <City>
                   <span>Cidade:</span>
                   <h3>{about.city}</h3>
                 </City>
-                |
+                /
                 <Email>
                   <span>Email:</span>
                   <h3>{email}</h3>
@@ -147,7 +147,7 @@ export const Post: React.FC<IUser> = (props: IUser) => {
                   <h4>{objective}</h4>
                 </Objective>
                 <Preference>
-                  <h4>{preference}</h4>
+                  <h4>Trabalho {preference}</h4>
                 </Preference>
               </Tags>
             </Text>
@@ -164,10 +164,9 @@ export const Post: React.FC<IUser> = (props: IUser) => {
             <p>{about.description}</p>
           </Description>
           <Languages>
-            {technologies &&
-              technologies?.map((language) => {
-                return <h4>{language.name}</h4>;
-              })}
+            {technology.name.split(',').map((item) => (
+              <h4>{item}</h4>
+            ))}
           </Languages>
         </Information>
       </Content>

@@ -14,6 +14,8 @@ export const Content = styled.section`
   border-radius: 10px;
   padding: 40px;
   gap: 40px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Image = styled.section`
@@ -33,9 +35,12 @@ export const Information = styled.section`
   flex: 3;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
 `;
 
 export const Header = styled.div`
+  flex: 1;
   display: flex;
   justify-content: space-between;
 `;
@@ -51,7 +56,7 @@ export const Name = styled.div`
   h2 {
     font-size: 26px;
     color: var(--lightSnow);
-    margin: 0 0 5px 0;
+    margin: 0 0 16px 0;
     padding: 0;
     font-weight: 600;
   }
@@ -81,13 +86,13 @@ export const City = styled.div`
   span {
     font-weight: bold;
     margin-right: 10px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   h3 {
-    font-weight: 100;
+    font-weight: 400;
     margin: 0;
-    font-size: 15px;
+    font-size: 16px;
   }
 `;
 
@@ -130,6 +135,7 @@ export const Email = styled.div`
 
 export const Description = styled.div`
   display: flex;
+  flex: 1;
 
   p {
     color: var(--lightSnow);
@@ -140,6 +146,7 @@ export const Description = styled.div`
 
 export const Tags = styled.div`
   display: flex;
+  margin-top: 5px;
 
   h4 {
     font-size: 14px;
@@ -198,6 +205,8 @@ export const Level = styled.div`
 
 export const Languages = styled.div`
   display: flex;
+  flex: 1;
+  margin-top: 13px;
 
   h4 {
     font-size: 14px;
@@ -205,7 +214,7 @@ export const Languages = styled.div`
     margin: 0;
     padding: 5px 10px;
     border-radius: 5px;
-    font-weight: 100;
+    font-weight: 500;
     background-color: var(--lightPink);
     margin-right: 15px;
   }
