@@ -25,6 +25,4 @@ public class Social {
 
     private String github;
 
-    private String site;
-
 }

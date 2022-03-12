@@ -22,9 +22,5 @@ public class Technology {
 
     private String name;
 
-    @ManyToOne
-    @JsonIgnore
-    private User User;
-
 }
 

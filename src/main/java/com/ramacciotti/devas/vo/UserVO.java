@@ -33,7 +33,7 @@ public class UserVO {
     private Job job;
 
     @NotNull @NotBlank
-    private List<Technology> technologies;
+    private Technology technology;
 
     @NotNull @NotBlank
     private Status status;
@@ -45,7 +45,7 @@ public class UserVO {
         this.job = user.getJob();
         this.status = user.getStatus();
         this.social = user.getSocial();
-        this.technologies = user.getTechnologies();
+        this.technology = user.getTechnology();
     }
 
     public static List<UserVO> convertToVO(List<User> user) {

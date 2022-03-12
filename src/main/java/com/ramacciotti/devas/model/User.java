@@ -39,22 +39,21 @@ public class User {
     @JoinColumn(name = "job_id")
     private Job job;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.ALL})
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "technology_id")
-    @NotNull
-    private List<Technology> technologies;
+    private Technology technology;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "status_id")
     @NotNull
     private Status status;
 
-    public User(String email, String password, About about, Social social, Job job, List<Technology> technologies) {
+    public User(String email, String password, About about, Social social, Job job, Technology technology) {
         this.email = email;
         this.password = password;
         this.about = about;
         this.social = social;
         this.job = job;
-        this.technologies = technologies;
+        this.technology = technology;
     }
 }

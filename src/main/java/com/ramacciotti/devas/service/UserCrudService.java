@@ -30,22 +30,31 @@ public class UserCrudService implements UserCrudInterface {
     @Override
     public UserVO createUser(UserVO userVO) {
 
-        User user = new User()
-                .withEmail(userVO.getEmail())
-                .withPassword(encoder.encode(userVO.getPassword()))
-                .withAbout(userVO.getAbout())
-                .withSocial(userVO.getSocial())
-                .withJob(userVO.getJob())
-                .withTechnologies(userVO.getTechnologies());
+        var searchUser = repository.findByEmail(userVO.getEmail());
 
-        Status status = new Status();
-        status.setCreatedAt(LocalDateTime.now());
-        status.setActive(true);
-        user.setStatus(status);
+        if(searchUser.isPresent()){
 
-        user = repository.save(user);
+            throw new IllegalArgumentException("this_email_is_already_registered");
 
-        return new UserVO(user);
+        } else {
+
+            User user = new User()
+                    .withEmail(userVO.getEmail())
+                    .withPassword(encoder.encode(userVO.getPassword()))
+                    .withAbout(userVO.getAbout())
+                    .withSocial(userVO.getSocial())
+                    .withJob(userVO.getJob())
+                    .withTechnology(userVO.getTechnology());
+
+            Status status = new Status();
+            status.setCreatedAt(LocalDateTime.now());
+            status.setActive(true);
+            user.setStatus(status);
+
+            user = repository.save(user);
+
+            return new UserVO(user);
+        }
 
     }
 
@@ -64,21 +73,11 @@ public class UserCrudService implements UserCrudInterface {
             throw new IllegalArgumentException("you_must_be_logged_to_update_user");
         }
 
-        if (userVO.getEmail() != null) {
-            user.get().setEmail(userVO.getEmail());
-            user.get().getStatus().setUpdatedAt(LocalDateTime.now());
-        }
-
-        if (userVO.getPassword() != null) {
-            user.get().setPassword(encoder.encode(userVO.getPassword()));
-            user.get().getStatus().setUpdatedAt(LocalDateTime.now());
-        }
-
         updateAbout(user, userVO);
 
         updateSocial(user, userVO);
 
-        updateTechnologies(user, userVO);
+        updateTechnology(user, userVO);
 
         updateJob(user, userVO);
 
@@ -105,51 +104,54 @@ public class UserCrudService implements UserCrudInterface {
 
     public void updateAbout(Optional<User> user, UserVO userVO) {
 
-        if (userVO.getAbout() != null) {
+        if(userVO.getAbout() != null){
+
             if (userVO.getAbout().getName() != null) {
-                user.get().getAbout().setName(userVO.getAbout().getName());
+            user.get().getAbout().setName(userVO.getAbout().getName());
             }
+
             if (userVO.getAbout().getAge() != null) {
                 user.get().getAbout().setAge(userVO.getAbout().getAge());
             }
+
             if (userVO.getAbout().getCity() != null) {
                 user.get().getAbout().setCity(userVO.getAbout().getCity());
             }
+
             if (userVO.getAbout().getDescription() != null) {
                 user.get().getAbout().setDescription(userVO.getAbout().getDescription());
             }
+
             user.get().getStatus().setUpdatedAt(LocalDateTime.now());
+
         }
 
     }
 
     public void updateSocial(Optional<User> user, UserVO userVO) {
 
-        if (userVO.getSocial() != null) {
+        if(userVO.getSocial() != null){
+
             if (userVO.getSocial().getLinkedin() != null) {
                 user.get().getSocial().setLinkedin(userVO.getSocial().getLinkedin());
             }
+
             if (userVO.getSocial().getGithub() != null) {
                 user.get().getSocial().setGithub(userVO.getSocial().getGithub());
             }
-            if (userVO.getSocial().getSite() != null) {
-                user.get().getSocial().setSite(userVO.getSocial().getSite());
-            }
+
             user.get().getStatus().setUpdatedAt(LocalDateTime.now());
+
         }
 
     }
 
-    public void updateTechnologies(Optional<User> user, UserVO userVO) {
+    public void updateTechnology(Optional<User> user, UserVO userVO) {
 
-        if (userVO.getTechnologies() != null) {
-            if (!userVO.getTechnologies().isEmpty()) {
-                for (Technology technology : user.get().getTechnologies()) {
-                    for (Technology technologyVO : userVO.getTechnologies()) {
-                        technology.setName(technologyVO.getName());
-                    }
-                }
-                user.get().getStatus().setUpdatedAt(LocalDateTime.now());
+        if(userVO.getTechnology() != null) {
+
+            if (userVO.getTechnology().getName() != null) {
+                user.get().getTechnology().setName(userVO.getTechnology().getName());
             }
         }
 
@@ -157,22 +159,28 @@ public class UserCrudService implements UserCrudInterface {
 
     public void updateJob(Optional<User> user, UserVO userVO) {
 
-        if (userVO.getJob() != null) {
+        if(userVO.getJob() != null) {
+
             if (userVO.getJob().getPosition() != null) {
                 user.get().getJob().setPosition(userVO.getJob().getPosition());
             }
+
             if (userVO.getJob().getLevel() != null) {
                 user.get().getJob().setLevel(userVO.getJob().getLevel());
             }
+
             if (userVO.getJob().getPreference() != null) {
                 user.get().getJob().setPreference(userVO.getJob().getPreference());
             }
+
             if (userVO.getJob().getObjective() != null) {
                 user.get().getJob().setObjective(userVO.getJob().getObjective());
             }
+
             if (userVO.getJob().getExpectation() != null) {
                 user.get().getJob().setExpectation(userVO.getJob().getExpectation());
             }
+
             user.get().getStatus().setUpdatedAt(LocalDateTime.now());
         }
 
