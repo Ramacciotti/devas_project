@@ -17,6 +17,6 @@ public interface UserCrudInterface {
     UserVO updateUser(UserVO userVO);
 
     @Transactional
-    void deleteUser(UserVO userVO);
+    void deleteUser(String email,  String password);
 
 }

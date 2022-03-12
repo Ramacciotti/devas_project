@@ -42,17 +42,17 @@ public class UserController {
         return crudService.updateUser(userVO);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{email}/{password}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@RequestBody UserVO userVO){
-        crudService.deleteUser(userVO);
+    public void deleteUser(@PathVariable String email, @PathVariable String password){
+        crudService.deleteUser(email, password);
     }
 
 
 
-    @PostMapping("/login")
-    public UserVO loginUser(@RequestBody UserVO userVO){
-        return loginService.loginUser(userVO);
+    @PostMapping("/login/{email}/{password}")
+    public UserVO loginUser(@PathVariable String email, @PathVariable String password){
+        return loginService.loginUser(email, password);
     }
 
     @GetMapping("/logout")

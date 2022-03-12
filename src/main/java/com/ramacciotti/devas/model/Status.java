@@ -20,8 +20,6 @@ public class Status {
     @JsonIgnore
     private Long id;
 
-    private boolean active;
-
     private boolean logged;
 
     private LocalDateTime createdAt;

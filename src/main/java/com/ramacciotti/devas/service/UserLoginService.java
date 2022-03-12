@@ -21,11 +21,11 @@ public class UserLoginService implements UserLoginInterface {
     }
 
     @Override
-    public UserVO loginUser(UserVO userVO) {
+    public UserVO loginUser(String email, String password) {
 
-        var user = service.findUserByEmail(userVO.getEmail());
+        var user = service.findUserByEmail(email);
 
-        if(validationService.validateLogin(userVO.getEmail(), userVO.getPassword())){
+        if(validationService.validateLogin(email, password)){
             user.get().getStatus().setLogged(true);
         } else {
             user.get().getStatus().setLogged(false);
