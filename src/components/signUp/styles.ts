@@ -13,7 +13,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75%;
+  width: 1200px;
   border-radius: 5px;
   height: auto;
 

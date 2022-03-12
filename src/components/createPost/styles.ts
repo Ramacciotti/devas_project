@@ -10,7 +10,6 @@ export const Container = styled.div`
   height: auto;
 
   form {
-    background-color: red;
     width: 100%;
   }
 

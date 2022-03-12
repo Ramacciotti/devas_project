@@ -55,10 +55,12 @@ export const SignUp: React.FC = () => {
       .then((response) => {
         console.log('SUCESSO: ', response);
         alert('Conta criada com sucesso!');
+        window.location.reload();
       })
       .catch((error) => {
         console.log('ERROR: ', error);
         alert('Ops! Ocorreu um erro ao criar a sua conta.');
+        window.location.reload();
       });
   };
 

@@ -8,23 +8,21 @@ export const SignIn: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const history = useHistory();
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     axios
-      .post('http://localhost:8080/user/login', {
-        email: email,
-        password: password,
-      })
+      .post(`http://localhost:8080/user/login/${email}/${password}'`)
       .then((response) => {
+        console.log('SUCESSO');
         localStorage.setItem('email', JSON.stringify(email));
         localStorage.setItem('password', JSON.stringify(password));
         localStorage.setItem('logged', 'true');
         history.push('/painel');
-        location.reload();
+        window.location.reload();
       })
       .catch((error) => {
-        console.log('ERROR: ', error);
-        localStorage.setItem('logged', 'false');
-        alert('Ops! Erro ao tentar logar!');
+        alert('Ops! Usuário e senha inválidos!');
+        localStorage.removeItem('logged');
+        window.location.replace('/error');
       });
   };
 

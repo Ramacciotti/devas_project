@@ -13,7 +13,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 1200px;
   border-radius: 5px;
   height: auto;
 
@@ -28,7 +28,7 @@ export const Content = styled.div`
 
   form {
     display: flex;
-    width: 75%;
+    width: 100%;
   }
 `;
 

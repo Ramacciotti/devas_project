@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.section`
   display: flex;
   width: 100%;
+  height: auto;
   justify-content: center;
   font-family: sans-serif;
 `;
@@ -16,6 +17,7 @@ export const Content = styled.section`
   gap: 40px;
   align-items: center;
   justify-content: center;
+  height: auto;
 `;
 
 export const Image = styled.section`
@@ -37,6 +39,8 @@ export const Information = styled.section`
   flex-direction: column;
   justify-content: space-around;
   align-items: space-around;
+  overflow: hidden;
+  height: auto;
 `;
 
 export const Header = styled.div`
@@ -136,11 +140,12 @@ export const Email = styled.div`
 export const Description = styled.div`
   display: flex;
   flex: 1;
+  height: 100px;
 
   p {
     color: var(--lightSnow);
-    line-height: 1.3;
     text-align: justify;
+    word-break: break-all; 
   }
 `;
 
